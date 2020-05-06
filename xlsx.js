@@ -15379,7 +15379,7 @@ function parse_cs(data, name, idx, opts, rels, wb, themes, styles) {
 
 function parse_ms(data, name, idx, opts, rels, wb, themes, styles) {
 	if(name.slice(-4)===".bin") return parse_ms_bin((data), opts, idx, rels, wb, themes, styles);
-	return parse_ms_xml((data), opts, idx, rels, wb, themes, styles);
+	return parse_ws_xml((data), opts, idx, rels, wb, themes, styles);
 }
 
 function parse_ds(data, name, idx, opts, rels, wb, themes, styles) {

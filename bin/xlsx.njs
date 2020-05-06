@@ -44,7 +44,7 @@ program
 	.option('-r, --rtf',  'emit RTF  to <sheetname> or <file>.txt (Table RTF)')
 	.option('-z, --dump', 'dump internal representation as JSON')
 	.option('--props',    'dump workbook properties as CSV')
-
+        .option('--dpath <file>', 'path to write dumpfile',)
 	.option('-F, --field-sep <sep>', 'CSV field separator', ",")
 	.option('-R, --row-sep <sep>', 'CSV row separator', "\n")
 	.option('-n, --sheet-rows <num>', 'Number of rows to process (0=all rows)')
@@ -162,8 +162,12 @@ if(program.listSheets) {
 	process.exit(0);
 }
 if(program.dump) {
-	console.log(JSON.stringify(wb));
-	process.exit(0);
+	if(program.dpath){
+	   fs.writeFileSync(program.dpath,JSON.stringify(wb));	
+	}else{
+	    console.log(JSON.stringify(wb));
+	    process.exit(0);
+	}
 }
 if(program.props) {
 	if(wb) dump_props(wb);
